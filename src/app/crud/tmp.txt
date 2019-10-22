@@ -1,0 +1,140 @@
+<div class="wrapper">
+  <div class="inner">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <h3>Registration Form</h3>
+      <div class="form-wrapper">
+        <label for="">Name</label>
+        <input type="text" class="form-control" formControlName="Name" required>
+      </div>
+
+      <div class="form-wrapper">
+        <label for="">Date of Birth</label>
+        <input type="datetime" class="form-control" formControlName="DateofBirth">
+      </div>
+
+      <div class="form-wrapper">
+        <label for="">Mobile No</label>
+        <input type="number" class="form-control" formControlName="MobileNo">
+      </div>
+
+      <div class="form-wrapper">
+        <label for="">Country</label>
+        <input type="text" class="form-control" formControlName="Country">
+      </div>
+      <div>
+        <button type="submit" (click)="save()" [disabled]="!postForm.valid">Submit</button>
+        <button>
+          <a [routerLink]="['../../Basicinfo']">Cancel</a>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+*********************************
+<br />
+<div class="card">
+  <br />
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="col-md-2">Name</label>
+      <input class="col-md-5" type="text" formControlName="Name" required>
+      <label class="col-md-5"></label>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2">Date of Birth</label>
+      <input class="col-md-5" type="datetime" formControlName="DateofBirth">
+      <label class="col-md-5"></label>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2">Mobile No</label>
+      <input class="col-md-5" type="number" formControlName="MobileNo">
+      <label class="col-md-5"></label>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2">Country</label>
+      <input class="col-md-5" type="text" formControlName="Country">
+      <label class="col-md-5"></label>
+    </div>
+
+
+    <div class="form-group">
+      <label class="col-md-2"></label>
+      <button type="submit" (click)="save()" [disabled]="!postForm.valid" class="btn btn-success">Submit</button>
+      -<a [routerLink]="['../../Basicinfo']" class="btn btn-danger">Cancel</a>
+      <label class="col-md-5"></label>
+    </div>
+  </form>
+</div>
+
+
+
+<div class="form-group">
+        <label class="col-md-4">Date of Birth</label>
+        <input class="col-md-12 form-control" type="datetime" formControlName="DateofBirth" required>
+      </div>
+
+
+
+    // formData.DateofBirth = formData.DateofBirth.toUTCString();
+    console.log(formData.DateofBirth);
+    let date: Date = new Date(formData.DateofBirth);
+    formData.DateofBirth = date;
+    console.log(date);
+    // console.log(formData.DateofBirth.toLocaleString());
+
+
+
+console.log(formData.DateofBirth);
+formData.DateofBirth = formData.DateofBirth.format('YYYY-MM-DD hh:mm:ss A Z');
+console.log(formData.DateofBirth.format('YYYY-MM-DD hh:mm:ss A Z'));
+
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<br />
+
+<pagination [totalItems]="totalItems" (pageChanged)="pageChanged($event)"></pagination>
+
+
+
+
+<div class="form-group">
+          <label for="SelectCountry" class="col-md-3">Country</label>
+          <select class="col-md-12 form-control" formControlName="Country" #Country [(ngModel)]="selectedCountry"
+            (change)="onChangeCountry($event)">
+            <option [selected]="country.name" *ngFor="let country of country; let i = index" value="{{i}}">
+              {{country.name}}</option>
+          </select>
+        </div>
+        <div
+          *ngIf="angForm.controls['Country'].invalid && (angForm.controls['Country'].dirty || angForm.controls['Country'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="angForm.controls['Country'].errors.required">
+            Country is required.
+          </div>
+        </div>
+
+
+ <div class="form-group">
+          <label class="col-md-4">Country</label>
+          <input type="text" class="form-control" formControlName="Country" disabled #Country [(ngModel)]="data.Country" />
+        </div>
+
+
+this.SelectedCountry = $event.target.options[$event.target.options.selectedIndex].text;
+
+
+
+const inventory = [
+          { name: 'apples', quantity: 2 },
+          { name: 'bananas', quantity: 0 },
+          { name: 'cherries', quantity: 5 }
+        ];
+        let dev2 = inventory.find(e => e.name === 'apples');
+        console.log(dev2);
+
+        

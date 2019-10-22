@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
+
+<div class="div101">
+  <hr />
+  <div class="card col-md-6">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <br />
+      <div class="form-group">
+        <label class="col-md-3">Name</label>
+        <input class="col-md-12 form-control" type="text" formControlName="Name" required>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Date of Birth</label>
+        <input type="text" placeholder="Datepicker" class=" col-md-12 form-control" formControlName="DateofBirth"
+          required bsDatepicker>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-md-3">Mobile No</label>
+        <input class="col-md-12 form-control" type="number" formControlName="MobileNo">
+      </div>
+
+
+      <div class="form-group">
+        <label for="SelectCountry" class="col-md-3">Country</label>
+        <select class="col-md-12 form-control" formControlName="Country" (change)="onChangeCountry($event)">
+          <option *ngFor="let country of country; let i = index" value="{{i}}">{{country.name}}</option>
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label class="col-md-3"></label>
+        <button type="submit" (click)="Save()" [disabled]="!postForm.valid" class="btn btn-success">Submit</button>
+        &nbsp;
+        <a [routerLink]="['../../Basicinfo']" class="btn btn-danger">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

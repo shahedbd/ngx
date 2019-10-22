@@ -1,0 +1,49 @@
+<hr />
+
+<div class="row">
+  <div class="col">
+    <input type="button" value="Add New" [routerLink]="['Createbasicinfo']" class="btn btn-danger">
+  </div>
+  <div class="col-md-4">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+      placeholder="&#61442;  Start searching">
+  </div>
+</div>
+
+<hr />
+
+<table class="table table-hover" border="1">
+  <thead>
+    <tr>
+      <th (click)="sort('id')">ID
+        <span class="glyphicon sort-icon" *ngIf="key =='id'"
+          [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+      </th>
+      <th (click)="sort('Name')">Name</th>
+      <th (click)="sort('DateofBirth')">Date of Birth</th>
+      <th (click)="sort('MobileNo')">Mobile No</th>
+      <th (click)="sort('Country')">Country</th>
+      <td style="width:11%" colspan="1"></td>
+    </tr>
+    <tr
+      *ngFor="let data of returnedArray | orderBy: key : reverse | filter:searchText | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+      <td>{{ data.id }}</td>
+      <td>{{ data.Name }}</td>
+      <td>{{ data.DateofBirth.toLocaleString() }}</td>
+      <td>{{ data.MobileNo }}</td>
+      <td>{{ data.Country }}</td>
+      <td><a [routerLink]="['Updatebasicinfo', data.id]" class="btn-sm btn-dark">Edit</a>
+        &nbsp;
+        <button type="button" class="btn-sm btn-dark">
+          <a (click)="Delete(data.id)">Delete</a>
+        </button>
+      </td>
+    </tr>
+  </thead>
+
+  <tbody>
+  </tbody>
+</table>
+
+<pagination [totalItems]="totalData" [maxSize]="maxSize" [boundaryLinks]="showBoundaryLinks"
+  (pageChanged)="pageChanged($event)"></pagination>
