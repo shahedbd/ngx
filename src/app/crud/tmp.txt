@@ -1,3 +1,13 @@
+Issue:
+01. Date picker
+https://valor-software.com/ngx-bootstrap/?gclid=Cj0KCQjwyLDpBRCxARIsAEENsrLg2AJZojFNjXtz0aKhngiP-1PJZW0SeZcKL_FLQpsLw2CrfWCEjaQaAqJ6EALw_wcB#/datepicker
+
+02. Close modal
+
+03. 
+
+
+
 <div class="wrapper">
   <div class="inner">
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
@@ -137,4 +147,12 @@ const inventory = [
         let dev2 = inventory.find(e => e.name === 'apples');
         console.log(dev2);
 
-        
+      
+
+<input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off">
+
+
+https://medium.com/better-programming/dynamically-loaded-bootstrap-4-modal-component-powered-by-angular-6621f5fd3173
+
+
+<a [routerLink]="['../../Basicinfo']" (click)="modalRef.hide()" class="btn btn-danger">Cancel</a>

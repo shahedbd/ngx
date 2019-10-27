@@ -1,38 +1,46 @@
-<hr />
+<table style="width:100%" border="0">
+  <tr>
+    <th class="float-left">
+      <!--<input type="button" value="Add New" [routerLink]="['Createbasicinfo']" class="btn btn-danger"> -->
+      <button type="button" class="btn btn-danger" (click)="openModal(template)">Add New</button>
+    </th>
+    <th class="float-right">
+      <div class="container h-10">
+        <div class="d-flex justify-content-right h-100">
+          <div class="searchbar">
+            <input class="search_input" type="text" name="search" placeholder="Search..." [(ngModel)]="searchText"
+              autocomplete="off">
+            <a routerLink="/Basicinfo" class="search_icon"><i class="fa fa-search"></i></a>
+          </div>
+        </div>
+      </div>
+    </th>
+  </tr>
+</table>
 
-<div class="row">
-  <div class="col">
-    <input type="button" value="Add New" [routerLink]="['Createbasicinfo']" class="btn btn-danger">
-  </div>
-  <div class="col-md-4">
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-      placeholder="&#61442;  Start searching">
-  </div>
-</div>
 
-<hr />
-
-<table class="table table-hover" border="1">
+<table class="table table-hover tblCustom" border="1">
   <thead>
-    <tr>
+    <tr class="tbaleHeader">
       <th (click)="sort('id')">ID
-        <span class="glyphicon sort-icon" *ngIf="key =='id'"
-          [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        <span class="fas fa-chevron-up" *ngIf="key =='id'" [ngClass]="{'fa fa-chevron-up':reverse,
+        'fa fa-chevron-down':!reverse}"></span>
       </th>
       <th (click)="sort('Name')">Name</th>
       <th (click)="sort('DateofBirth')">Date of Birth</th>
       <th (click)="sort('MobileNo')">Mobile No</th>
       <th (click)="sort('Country')">Country</th>
-      <td style="width:11%" colspan="1"></td>
+      <th colspan="1"></th>
     </tr>
-    <tr
-      *ngFor="let data of returnedArray | orderBy: key : reverse | filter:searchText | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+    <tr *ngFor="let data of returnedArray | orderBy: key : reverse | 
+      filter:searchText ">
       <td>{{ data.id }}</td>
       <td>{{ data.Name }}</td>
-      <td>{{ data.DateofBirth.toLocaleString() }}</td>
+      <td>{{ data.DateofBirth | date }}</td>
       <td>{{ data.MobileNo }}</td>
       <td>{{ data.Country }}</td>
-      <td><a [routerLink]="['Updatebasicinfo', data.id]" class="btn-sm btn-dark">Edit</a>
+      <td>
+        <a [routerLink]="['Updatebasicinfo', data.id]" class="btn-sm btn-dark">Edit</a>
         &nbsp;
         <button type="button" class="btn-sm btn-dark">
           <a (click)="Delete(data.id)">Delete</a>
@@ -45,5 +53,19 @@
   </tbody>
 </table>
 
-<pagination [totalItems]="totalData" [maxSize]="maxSize" [boundaryLinks]="showBoundaryLinks"
+<pagination [totalItems]="totalData" [maxSize]="maxSize" [itemsPerPage]="15" [boundaryLinks]="showBoundaryLinks"
   (pageChanged)="pageChanged($event)"></pagination>
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add New Personal Info</h4>
+    <button type="button" class="btn btn-danger pull-right" 
+    (click)="TMPFunc()" (click)="modalRef.hide()">Close</button>
+  </div>
+  <div class="modal-body">
+    <app-createbasicinfo></app-createbasicinfo>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>

@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { delay } from 'q';
 import { Basicinfo } from '../../Service/basicinfo';
 import { GenericService } from '../../Service/generic.service';
 import Swal from 'sweetalert2';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
 
 @Component({
   selector: 'app-basicinfo',
@@ -12,7 +14,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
   styleUrls: ['./basicinfo.component.scss']
 })
 export class BasicinfoComponent implements OnInit {
-  maxSize = 5;
+  maxSize = 7;
   showBoundaryLinks = true;
   totalData = null;
   // bigCurrentPage = 1;
@@ -20,6 +22,8 @@ export class BasicinfoComponent implements OnInit {
   data: any;
   basicinfo: Basicinfo[];
   returnedArray: Basicinfo[];
+  modalRef: BsModalRef;
+
 
   // sorting
   key = 'id'; // set default
@@ -31,7 +35,8 @@ export class BasicinfoComponent implements OnInit {
 
   constructor(private genericService: GenericService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private modalService: BsModalService) {
     this.genericService.apiName = 'Basicinfo';
   }
 
@@ -40,7 +45,8 @@ export class BasicinfoComponent implements OnInit {
       .subscribe((data: Basicinfo[]) => {
         // data.reverse();
         this.basicinfo = data;
-        this.returnedArray = this.basicinfo.slice(0, 10);
+        //this.returnedArray = this.basicinfo;
+        this.returnedArray = this.basicinfo.slice(0, 15);
         this.totalData = this.basicinfo.length;
       });
   }
@@ -76,5 +82,17 @@ export class BasicinfoComponent implements OnInit {
       }
     });
 
+  }
+
+  async TMPFunc() {
+    console.log('HW 909');
+    // await delay(1000);
+    //this.router.navigate(['Basicinfo']);
+    this.ngOnInit();
+  }
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+    const modalWidth = 'modal-lg';
+    this.modalRef.setClass(modalWidth);
   }
 }
