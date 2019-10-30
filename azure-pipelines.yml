@@ -18,6 +18,7 @@ steps:
 
 - script: |
     npm install -g @angular/cli
+    npm install -g typescript
     npm install
-    ng build --prod
+    ng build --base-href --prod
   displayName: 'npm install'
