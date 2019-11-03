@@ -46,7 +46,7 @@ export class BasicinfoComponent implements OnInit {
       .subscribe((data: Basicinfo[]) => {
         // data.reverse();
         this.basicinfo = data;
-        //this.returnedArray = this.basicinfo;
+        // this.returnedArray = this.basicinfo;
         this.returnedArray = this.basicinfo.slice(0, 15);
         this.totalData = this.basicinfo.length;
       });
