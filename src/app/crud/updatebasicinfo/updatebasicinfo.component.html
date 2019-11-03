@@ -1,71 +1,68 @@
 <div class="div101">
-  <h1>Update Basic Info</h1>
-  <hr />
-  <div class="card col-md-6">
-    <div class="card-body">
-      <form [formGroup]="angForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="card-body">
+    <form [formGroup]="angForm" (ngSubmit)="onSubmit()" novalidate>
 
-        <div class="form-group">
-          <label class="col-md-4">Name</label>
-          <input type="text" class="form-control" formControlName="Name" #Name [(ngModel)]="basicInfo.Name" />
+      <div class="form-group">
+        <label class="col-md-4">Name</label>
+        <input type="text" class="form-control" formControlName="Name" #Name [(ngModel)]="basicInfo.Name" />
+      </div>
+      <div
+        *ngIf="angForm.controls['Name'].invalid && (angForm.controls['Name'].dirty || angForm.controls['Name'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['Name'].errors.required">
+          Name is required.
         </div>
-        <div
-          *ngIf="angForm.controls['Name'].invalid && (angForm.controls['Name'].dirty || angForm.controls['Name'].touched)"
-          class="alert alert-danger">
-          <div *ngIf="angForm.controls['Name'].errors.required">
-            Name is required.
-          </div>
-        </div>
+      </div>
 
-        <div class="form-group">
-          <label class="col-md-4">Date of Birth</label>
-          <input type="datetime" class="form-control" formControlName="DateofBirth" #DateofBirth
-            [(ngModel)]="basicInfo.DateofBirth" bsDatepicker />
-        </div>
+      <div class="form-group">
+        <label class="col-md-4">Date of Birth</label>
+        <input type="datetime" class="form-control" formControlName="DateofBirth" #DateofBirth
+          [(ngModel)]="basicInfo.DateofBirth" bsDatepicker />
+      </div>
 
-        <div
-          *ngIf="angForm.controls['DateofBirth'].invalid && (angForm.controls['DateofBirth'].dirty || angForm.controls['DateofBirth'].touched)"
-          class="alert alert-danger">
-          <div *ngIf="angForm.controls['DateofBirth'].errors.required">
-            Date of Birth is required.
-          </div>
+      <div
+        *ngIf="angForm.controls['DateofBirth'].invalid && (angForm.controls['DateofBirth'].dirty || angForm.controls['DateofBirth'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['DateofBirth'].errors.required">
+          Date of Birth is required.
         </div>
+      </div>
 
-        <div class="form-group">
-          <label class="col-md-4">Mobile No</label>
-          <input type="number" class="form-control" formControlName="MobileNo" #MobileNo [(ngModel)]="basicInfo.MobileNo" />
+      <div class="form-group">
+        <label class="col-md-4">Mobile No</label>
+        <input type="number" class="form-control" formControlName="MobileNo" #MobileNo
+          [(ngModel)]="basicInfo.MobileNo" />
+      </div>
+      <div
+        *ngIf="angForm.controls['MobileNo'].invalid && (angForm.controls['MobileNo'].dirty || angForm.controls['MobileNo'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['MobileNo'].errors.required">
+          Mobile No is required.
         </div>
-        <div
-          *ngIf="angForm.controls['MobileNo'].invalid && (angForm.controls['MobileNo'].dirty || angForm.controls['MobileNo'].touched)"
-          class="alert alert-danger">
-          <div *ngIf="angForm.controls['MobileNo'].errors.required">
-            Mobile No is required.
-          </div>
-        </div>
+      </div>
 
-        <div class="form-group">
-          <label for="SelectCountry" class="col-md-3">Country</label>
-          <select class="col-md-12 form-control" formControlName="Country" #Country [(ngModel)]="basicInfo.Country"
-            (change)="onChangeCountry($event)">
-            <option *ngFor="let country of country; let i = index" value="{{i}}">
-              {{country.name}}</option>
-          </select>
+      <div class="form-group">
+        <label for="SelectCountry" class="col-md-3">Country</label>
+        <select class="col-md-12 form-control" formControlName="Country" #Country [(ngModel)]="basicInfo.Country"
+          (change)="onChangeCountry($event)">
+          <option *ngFor="let country of country; let i = index" value="{{i}}">
+            {{country.name}}</option>
+        </select>
+      </div>
+      <div
+        *ngIf="angForm.controls['Country'].invalid && (angForm.controls['Country'].dirty || angForm.controls['Country'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['Country'].errors.required">
+          Country is required.
         </div>
-        <div
-          *ngIf="angForm.controls['Country'].invalid && (angForm.controls['Country'].dirty || angForm.controls['Country'].touched)"
-          class="alert alert-danger">
-          <div *ngIf="angForm.controls['Country'].errors.required">
-            Country is required.
-          </div>
-        </div>
+      </div>
 
 
-        <div class="form-group">
-          <button type="submit" (click)="Update()" [disabled]="angForm.invalid" class="btn btn-primary">Update</button>
-          &nbsp;
-          <a [routerLink]="['../../../Basicinfo']" class="btn btn-danger">Cancel</a>
-        </div>
-      </form>
-    </div>
+      <div class="form-group">
+        <button type="submit" (click)="Update()" [disabled]="angForm.invalid" class="btn btn-primary">Update</button>
+        &nbsp;
+        <a [routerLink]="['../../../Basicinfo']" class="btn btn-danger">Cancel</a>
+      </div>
+    </form>
   </div>
 </div>

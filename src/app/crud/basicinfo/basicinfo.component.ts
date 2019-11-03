@@ -17,6 +17,7 @@ export class BasicinfoComponent implements OnInit {
   maxSize = 7;
   showBoundaryLinks = true;
   totalData = null;
+  searchText = null;
   // bigCurrentPage = 1;
 
   data: any;
@@ -84,13 +85,17 @@ export class BasicinfoComponent implements OnInit {
 
   }
 
-  async TMPFunc() {
-    console.log('HW 909');
-    // await delay(1000);
-    //this.router.navigate(['Basicinfo']);
+  async ReloadPageData() {
     this.ngOnInit();
   }
-  openModal(template: TemplateRef<any>) {
+  openCreateModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+    const modalWidth = 'modal-lg';
+    this.modalRef.setClass(modalWidth);
+  }
+
+  openEditModal(template: TemplateRef<any>, id) {
+    // console.log(id);
     this.modalRef = this.modalService.show(template);
     const modalWidth = 'modal-lg';
     this.modalRef.setClass(modalWidth);

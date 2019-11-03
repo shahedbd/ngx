@@ -45,7 +45,7 @@ export class UpdatebasicinfoComponent implements OnInit {
       });
 
     this.route.params.subscribe(params => {
-      this.genericService.getById(params['id']).subscribe(result => {
+      this.genericService.getById(5).subscribe(result => {
         this.basicInfo = result;
 
         let index = 0;

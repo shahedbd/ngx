@@ -1,0 +1,12 @@
+
+
+> cd E:\gitClone\jsonServer
+> json-server --watch db.json
+
+Now go to: http://localhost:3000/posts
+
+
+Run Project:
+> cd E:\gitClone\ngx
+> ng serve 
+

@@ -1,8 +1,8 @@
 <table style="width:100%" border="0">
   <tr>
     <th class="float-left">
-      <!--<input type="button" value="Add New" [routerLink]="['Createbasicinfo']" class="btn btn-danger"> -->
-      <button type="button" class="btn btn-danger" (click)="openModal(template)">Add New</button>
+      <button type="button" class="btn btn-success2" (click)="openCreateModal(template)">
+        <i class="fa fa-plus"></i> New</button>
     </th>
     <th class="float-right">
       <div class="container h-10">
@@ -40,9 +40,9 @@
       <td>{{ data.MobileNo }}</td>
       <td>{{ data.Country }}</td>
       <td>
-        <a [routerLink]="['Updatebasicinfo', data.id]" class="btn-sm btn-dark">Edit</a>
+        <a (click)="openEditModal(template2, data.id)" class="btn-sm btn-success2">Edit</a>
         &nbsp;
-        <button type="button" class="btn-sm btn-dark">
+        <button type="button" class="btn-sm btn-success2">
           <a (click)="Delete(data.id)">Delete</a>
         </button>
       </td>
@@ -60,11 +60,24 @@
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Add New Personal Info</h4>
-    <button type="button" class="btn btn-danger pull-right" 
-    (click)="TMPFunc()" (click)="modalRef.hide()">Close</button>
+    <button type="button" class="btn btn-danger pull-right" (click)="ReloadPageData()"
+      (click)="modalRef.hide()">Close</button>
   </div>
   <div class="modal-body">
     <app-createbasicinfo></app-createbasicinfo>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
+
+<ng-template #template2>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Update Personal Info</h4>
+    <button type="button" class="btn btn-danger pull-right" (click)="ReloadPageData()"
+      (click)="modalRef.hide()">Close</button>
+  </div>
+  <div class="modal-body">
+    <app-updatebasicinfo></app-updatebasicinfo>
   </div>
   <div class="modal-footer">
   </div>
