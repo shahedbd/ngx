@@ -1,6 +1,7 @@
 
 
 > cd E:\gitClone\jsonServer
+> cd /Users/mlbd.shahidul/git/TechLearning/Angular/jsonServer
 > json-server --watch db.json
 
 Now go to: http://localhost:3000/posts
@@ -8,5 +9,14 @@ Now go to: http://localhost:3000/posts
 
 Run Project:
 > cd E:\gitClone\ngx
+> cd /Users/mlbd.shahidul/git/TechLearning/Angular/ngx
 > ng serve 
+
+
+
+
+NPM: 
+npm i font-awesome
+
+
 

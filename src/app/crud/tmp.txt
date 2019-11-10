@@ -7,6 +7,8 @@ https://valor-software.com/ngx-bootstrap/?gclid=Cj0KCQjwyLDpBRCxARIsAEENsrLg2AJZ
 03. 
 
 
+<td>{{ data.DateofBirth | date }}</td>
+
 
 <div class="wrapper">
   <div class="inner">

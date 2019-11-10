@@ -6,6 +6,7 @@ import { GenericService } from '../../Service/generic.service';
 import { JSONDataService } from '../../Service/jsondata.service';
 import { Country } from '../../Service/country';
 import { ToastrService } from 'ngx-toastr';
+import { CommonUserService } from '../../Service/common-user.service';
 
 
 @Component({
@@ -19,10 +20,12 @@ export class UpdatebasicinfoComponent implements OnInit {
   basicInfo: any = {};
   country: Country[];
   selectedCountry: any;
+  Id: any;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private genericService: GenericService,
+    private _commonUserService: CommonUserService,
     private jSONDataService: JSONDataService,
     private toastr: ToastrService,
     private fb: FormBuilder) {
@@ -39,13 +42,14 @@ export class UpdatebasicinfoComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.jSONDataService.getJSON()
+    this.Id = this._commonUserService.getSession('ID');
+    this.jSONDataService.getJSON()
       .subscribe((dataCountry: Country[]) => {
         this.country = dataCountry;
       });
 
     this.route.params.subscribe(params => {
-      this.genericService.getById(5).subscribe(result => {
+      this.genericService.getById(this.Id).subscribe(result => {
         this.basicInfo = result;
 
         let index = 0;
@@ -74,7 +78,7 @@ export class UpdatebasicinfoComponent implements OnInit {
     const formData: any = Object.assign({}, this.angForm.value);
     formData.Country = this.selectedCountry;
     this.route.params.subscribe(async params => {
-      this.genericService.update(params['id'], formData);
+      this.genericService.update(this.Id, formData);
       await delay(1);
       this.ngOnInit();
       this.showSuccess(formData);

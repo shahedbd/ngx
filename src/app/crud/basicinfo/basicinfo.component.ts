@@ -6,6 +6,7 @@ import { GenericService } from '../../Service/generic.service';
 import Swal from 'sweetalert2';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { CommonUserService } from '../../Service/common-user.service';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class BasicinfoComponent implements OnInit {
   }
 
   constructor(private genericService: GenericService,
+    private _commonUserService: CommonUserService,
     private router: Router,
     private route: ActivatedRoute,
     private modalService: BsModalService) {
@@ -88,6 +90,7 @@ export class BasicinfoComponent implements OnInit {
   async ReloadPageData() {
     this.ngOnInit();
   }
+
   openCreateModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
     const modalWidth = 'modal-lg';
@@ -95,7 +98,7 @@ export class BasicinfoComponent implements OnInit {
   }
 
   openEditModal(template: TemplateRef<any>, id) {
-    // console.log(id);
+    this._commonUserService.setSession('ID', id);
     this.modalRef = this.modalService.show(template);
     const modalWidth = 'modal-lg';
     this.modalRef.setClass(modalWidth);
